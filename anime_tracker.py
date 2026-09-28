@@ -4,6 +4,7 @@ Author: Yasir
 Purpose: This shows the user the anime they are watching and can track their progress.
 Date: September 27, 2026
 """
+anime_list = []
 while True:
     print("===Anime Progress Tracker===")
     print("1. Add anime")
@@ -14,11 +15,37 @@ while True:
     choice = input("Choose an option: ")
 
     if choice == "1":
-        print("Add anime")
+        anime_name = input("Enter anime name:")
+        total_episodes = int(input("Enter total episodes: "))
+
+        anime = {
+            "name": anime_name,
+            "watched": 0,
+            "total":total_episodes
+        }
+        anime_list.append(anime)
+        print(anime_name, "was added to your list")
+        
     elif choice == "2":
-        print("View anime list")
+        if anime_list:
+            print("Your anime list:")
+
+            for anime in anime_list:
+                print(anime["name"],"-",anime["watched"], "/", anime["total"])
+        else: 
+            print("Your anime list is empty.")
+        
     elif choice == "3":
-        print("Update progress")
+        anime_name = input("Enter the anime name:")
+        for anime in anime_list:
+            if anime["name"].lower() == anime_name.lower():
+                episodes = int(input("How many episodes have you watched?"))
+                anime["watched"] = episodes
+                print("Update progress")
+                break
+                
+        
+
     elif choice == "4":
         print("Goodbye")
     else:
