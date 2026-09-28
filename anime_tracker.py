@@ -10,7 +10,8 @@ while True:
     print("1. Add anime")
     print("2. View anime list")
     print("3. Update progress")
-    print("4. Exit")
+    print("4. Rate anime")
+    print("5. Exit")
 
     choice = input("Choose an option: ")
 
@@ -22,7 +23,8 @@ while True:
             "name": anime_name,
             "watched": 0,
             "total":total_episodes,
-            "status": "Watching"
+            "status": "Watching",
+            "rating": None
         }
         anime_list.append(anime)
         print(anime_name, "was added to your list")
@@ -53,9 +55,21 @@ while True:
         
 
     elif choice == "4":
-        print("Goodbye")
-    else:
-        print("Invalid choice")    
+        anime_name = input("Enter the anime name:")
+
+        for anime in anime_list:
+            if anime["name"].lower() == anime_name.lower():
+                if anime["status"] == "Completed":
+                 rating = int(input("Rate this anime from 1 to 10:"))
+                 anime["rating"] = rating
+                 print("Rating saved")
+                else:
+                 print("You can only rate completed anime")
+                break    
+
+    elif choice == "5":
+        print("Goodbye!") 
+        break
 
 
       
