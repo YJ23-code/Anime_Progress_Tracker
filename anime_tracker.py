@@ -34,7 +34,8 @@ while True:
             print("Your anime list:")
 
             for anime in anime_list:
-                print(anime["name"],"-",anime["watched"], "/", anime["total"], "-", anime["status"])
+                progress = (anime["watched"] / anime["total"]) * 100
+                print(anime["name"],"-",anime["watched"], "/", anime["total"], "-", anime["status"], "-", round(progress, 1), "%")
         else: 
             print("Your anime list is empty.")
         
