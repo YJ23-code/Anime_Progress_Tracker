@@ -21,7 +21,8 @@ while True:
         anime = {
             "name": anime_name,
             "watched": 0,
-            "total":total_episodes
+            "total":total_episodes,
+            "status": "Watching"
         }
         anime_list.append(anime)
         print(anime_name, "was added to your list")
@@ -31,7 +32,7 @@ while True:
             print("Your anime list:")
 
             for anime in anime_list:
-                print(anime["name"],"-",anime["watched"], "/", anime["total"])
+                print(anime["name"],"-",anime["watched"], "/", anime["total"], "-", anime["status"])
         else: 
             print("Your anime list is empty.")
         
@@ -41,6 +42,11 @@ while True:
             if anime["name"].lower() == anime_name.lower():
                 episodes = int(input("How many episodes have you watched?"))
                 anime["watched"] = episodes
+                if episodes >= anime["total"]:
+                    anime["status"] = "Completed"
+                else:
+                    anime["status"] = "Watching"
+
                 print("Update progress")
                 break
                 
