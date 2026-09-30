@@ -4,14 +4,18 @@ Author: Yasir
 Purpose: This shows the user the anime they are watching and can track their progress.
 Date: September 27, 2026
 """
-anime_list = []
-while True:
-    print("===Anime Progress Tracker===")
+def show_menu():
+    print("==Anime Progress Tracker==")
     print("1. Add anime")
     print("2. View anime list")
     print("3. Update progress")
     print("4. Rate anime")
     print("5. Exit")
+
+anime_list = []
+while True:
+    show_menu()
+  
 
     choice = input("Choose an option: ")
 
