@@ -18,16 +18,24 @@ while True:
     if choice == "1":
         anime_name = input("Enter anime name:")
         total_episodes = int(input("Enter total episodes: "))
+        anime_exists = False
+        for anime in anime_list:
+            if anime["name"].lower() == anime_name.lower():
+                anime_exists = True
+                break
+        if anime_exists:
+            print("That anime is already in your list.")  
+        else:      
 
-        anime = {
+            anime = {
             "name": anime_name,
             "watched": 0,
             "total":total_episodes,
             "status": "Watching",
             "rating": None
         }
-        anime_list.append(anime)
-        print(anime_name, "was added to your list")
+            anime_list.append(anime)
+            print(anime_name, "was added to your list")
         
     elif choice == "2":
         if anime_list:
