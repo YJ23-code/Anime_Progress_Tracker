@@ -1,11 +1,23 @@
 from anime import Anime
+from storage import save_anime, load_anime
 
 class AnimeTracker:
     """Manages a collection of anime objects"""
 
     def __init__(self):
-        """Create an empty anime list"""
+        """Create an anime list and load saved data."""
         self.anime_list = []
+
+        saved_data = load_anime()
+
+        for item in saved_data:
+            anime = Anime(item["name"], item["total"])
+            anime.update_progress(item["watched"])
+
+            if item["rating"] is not None:
+                anime.rate_anime(item["rating"])
+
+            self.anime_list.append(anime)
 
     def add_anime(self, name, total):
         """Add a new anime if it isnt alrerady in the list"""
@@ -14,6 +26,7 @@ class AnimeTracker:
 
         new_anime = Anime(name, total)
         self.anime_list.append(new_anime)
+        save_anime(self.anime_list)
         return new_anime    
 
     def find_anime(self, name):
@@ -51,6 +64,7 @@ class AnimeTracker:
             raise ValueError("Anime not found")
 
         anime.update_progress(episodes)
+        save_anime(self.anime_list)
         return anime 
 
 
@@ -62,4 +76,5 @@ class AnimeTracker:
             raise ValueError("Anime not found")
 
         anime.rate_anime(rating)
+        save_anime(self.anime_list)
         return anime           
