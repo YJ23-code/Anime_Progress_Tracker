@@ -1,3 +1,4 @@
+
 """
 Program: Anime Progress Tracker
 Author: Yasir
@@ -6,11 +7,12 @@ Resources: Refactored from Project 1
 Date: October 30, 2026
 """
 
-class Anime:
-    """Stores information and progress for one anime"""
 
-    def __init__(self,name,total):
-        """Create an anime with its name and total episodes"""
+class Anime:
+    """Stores information and progress for one anime."""
+
+    def __init__(self, name, total):
+        """Create an anime with its name and total episodes."""
         if not name.strip():
             raise ValueError("Anime name cannot be empty")
         if total <= 0:
@@ -18,29 +20,33 @@ class Anime:
 
         self.name = name.strip()
         self.total = total
-        self.wacthed = 0
+        self.watched = 0
         self.status = "Watching"
         self.rating = None
 
-        def update_progress(self,episodes):
-            """Update watched episodes and completion status"""
-            if episodes < 0 or episodes > self.total:
-                raise ValueError("Episodes must be between 0 and the total")
-            self.watched = episodes
+    def update_progress(self, episodes):
+        """Update watched episodes and completion status."""
+        if episodes < 0 or episodes > self.total:
+            raise ValueError("Episodes must be between 0 and the total")
 
-            if self.watched == self.total:
-                self.status ="Completed"
-            else:
-                self.status = "Wacthing"
-                self.rating = None
+        self.watched = episodes
 
-                def get_progress(self):
-                    """Rate an anime after all episodes are watched"""
-                    if self.status != "Completed":
-                        raise ValueError("You can only rate completed anime")
-                    if rating < 1 or rating > 10:
-                        raise ValueError("Rating must be between 1 and 10")
+        if self.watched == self.total:
+            self.status = "Completed"
+        else:
+            self.status = "Watching"
+            self.rating = None
 
-                    self.rating = rating
-                                
-    
+    def get_progress(self):
+        """Return the percentage of episodes watched."""
+        return round((self.watched / self.total) * 100, 1)
+
+    def rate_anime(self, rating):
+        """Rate an anime after all episodes are watched."""
+        if self.status != "Completed":
+            raise ValueError("You can only rate completed anime")
+
+        if rating < 1 or rating > 10:
+            raise ValueError("Rating must be between 1 and 10")
+
+        self.rating = rating
