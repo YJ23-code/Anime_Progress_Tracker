@@ -26,7 +26,7 @@ def save_anime(anime_list, filename="anime_data.json"):
     file_path = Path(__file__).resolve().parent / filename
 
     with open(file_path, "w", encoding="utf-8") as file:
-            json.dump(data, file, indent=4)
+        json.dump(data, file, indent=4)
 
 
 def load_anime(filename="anime_data.json"):
@@ -37,10 +37,11 @@ def load_anime(filename="anime_data.json"):
         with open(file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
 
-            return data
+        return data
         
     except FileNotFoundError:
-            return []
+        return []
+
     except json.JSONDecodeError:
-         print("Error: Could not read the anime data file.")
-         return []
+        print("Error: Could not read the anime data file.")
+        return []

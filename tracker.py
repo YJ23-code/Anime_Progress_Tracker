@@ -1,3 +1,12 @@
+"""
+Program: Anime Progress Tracker
+Author: Yasir
+Purpose: Manages the anime list and saves progress.
+Resources: Refactored from Project 1.
+Date: October 30, 2026
+"""
+
+
 from anime import Anime
 from storage import save_anime, load_anime
 
@@ -20,7 +29,7 @@ class AnimeTracker:
             self.anime_list.append(anime)
 
     def add_anime(self, name, total):
-        """Add a new anime if it isnt alrerady in the list"""
+        """Add a new anime if it isnt already in the list"""
         if self.find_anime(name) is not None:
             raise ValueError("That anime is already in your list")
 
